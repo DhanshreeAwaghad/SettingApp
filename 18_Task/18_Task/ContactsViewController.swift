@@ -36,7 +36,7 @@ class ContactsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
-
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGestureRecognizer.cancelsTouchesInView = false  // if u tap on view it wont cancel
         self.view.addGestureRecognizer(tapGestureRecognizer)//It wont disappear
