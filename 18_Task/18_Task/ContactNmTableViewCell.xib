@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactNmTableViewCell" rowHeight="63" id="KGk-i7-Jjw" customClass="ContactNmTableViewCell" customModule="_8_Task" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="our-xs-AXv">
+                        <rect key="frame" x="78" y="21" width="234" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="234" id="0XH-4A-CCU"/>
+                            <constraint firstAttribute="height" constant="21" id="ObK-q2-aRL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="building" translatesAutoresizingMaskIntoConstraints="NO" id="24i-5p-qwY">
+                        <rect key="frame" x="16" y="15" width="49" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="2fC-jr-JEN"/>
+                            <constraint firstAttribute="width" constant="49" id="A34-cH-cyW"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="24i-5p-qwY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="G4P-Kh-PZs"/>
+                    <constraint firstItem="24i-5p-qwY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ME8-9Q-0u0"/>
+                    <constraint firstItem="our-xs-AXv" firstAttribute="leading" secondItem="24i-5p-qwY" secondAttribute="trailing" constant="13" id="Z6p-vs-uzN"/>
+                    <constraint firstItem="our-xs-AXv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="jFU-e5-KjD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="contactIImg" destination="24i-5p-qwY" id="9sm-nb-YMV"/>
+                <outlet property="contactNm" destination="our-xs-AXv" id="MRU-ir-Sfi"/>
+            </connections>
+            <point key="canvasLocation" x="129.7709923664122" y="-4.5774647887323949"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="building" width="128" height="128"/>
+    </resources>
+</document>
