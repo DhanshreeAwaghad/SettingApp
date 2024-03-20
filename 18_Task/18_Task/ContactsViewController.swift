@@ -12,7 +12,7 @@ class PopupView: UIView {
         // Customize your popup view here
 }
 
-class ContactsViewController: UIViewController{
+class ContactsViewController: UIViewController, UIViewControllerTransitioningDelegate{
     
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var contactCollectionView: UICollectionView!
@@ -23,9 +23,14 @@ class ContactsViewController: UIViewController{
     
     let menuView = UIView()
     
+    @IBOutlet weak var plusFloatingBtn: UIButton!
+    
     var popupView: PopupView!
     
-    var names : [String] = ["Akansha","Apeksha","Aarvi","Aaradhya","Aboli","Aachal","Bhavika","Balika","Bittu","Chameli","Chanda","Dhanashree","Dipti","Dipali","Divya"]
+    var isComingFromSideMenu : Bool?
+    
+    var names : [String] =
+    ["Akansha","Apeksha","Aarvi","Aaradhya","Aboli","Aachal","Bhavika","Balika","Bittu","Chameli","Chanda","Dhanashree","Dipti","Dipali","Divya"]
     
     var img : [String] = ["a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2","a3"]
     
@@ -36,14 +41,14 @@ class ContactsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
-        
+        plusFloatingBtn.layer.cornerRadius = 15
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGestureRecognizer.cancelsTouchesInView = false  // if u tap on view it wont cancel
         self.view.addGestureRecognizer(tapGestureRecognizer)//It wont disappear
         self.menuView.isHidden = true
         self.view.addSubview(menuView)
         self.setUpMenUIView()
-
+        
         menuView.backgroundColor = UIColor(hex: "D8F0F7")
         menuView.layer.shadowColor = UIColor.black.cgColor
         menuView.layer.shadowOffset = CGSize(width: -1, height: 1)
@@ -73,6 +78,30 @@ class ContactsViewController: UIViewController{
         popupView.isHidden = true
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("IS Comming from SideMenuVC : \(isComingFromSideMenu)")
+        if let isComingFromSideMenu = isComingFromSideMenu{
+            let sideVC = self.storyboard?.instantiateViewController(identifier: "CreateLabelViewController") as! CreateLabelViewController
+            sideVC.modalPresentationStyle = .overCurrentContext
+            sideVC.modalTransitionStyle = .crossDissolve
+            self.present(sideVC, animated: true)
+        }
+        else {
+            print("Nothing to show")
+        }
+    }
+    
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideInPresentationAnimator(isPresentation: true)
+    }
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideInPresentationAnimator(isPresentation: false)
+    }
+    
     func registerCell(){
         let uinib = UINib(nibName: "ContactCollectionViewCell", bundle: nil)
         self.contactCollectionView.register(uinib, forCellWithReuseIdentifier: "ContactCollectionViewCell")
@@ -94,7 +123,7 @@ class ContactsViewController: UIViewController{
         let firstBtn = UIButton()
         let secondBtn = UIButton()
         let thirdBtn = UIButton()
- 
+        
         menuStackView.addArrangedSubview(firstBtn)
         menuStackView.addArrangedSubview(secondBtn)
         menuStackView.addArrangedSubview(thirdBtn)
@@ -111,15 +140,15 @@ class ContactsViewController: UIViewController{
         secondBtn.titleLabel?.font = UIFont(name: "Helvetica-Medium", size: 20.0)
         thirdBtn.titleLabel?.font = UIFont(name: "Helvetica-Medium", size: 20.0)
         
-        firstBtn.addTarget(self, action: #selector(menuBtnAction(_:)), for: .touchUpInside)
+        firstBtn.addTarget(self, action: #selector(menuAction1), for: .touchUpInside)
         secondBtn.addTarget(self, action: #selector(menuAction2), for: .touchUpInside)
         thirdBtn.addTarget(self, action: #selector(menuAction3), for: .touchUpInside)
-
+        
         menuView.translatesAutoresizingMaskIntoConstraints = false
         menuStackView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         self.menuView.addSubview(menuStackView)
-
+        
         NSLayoutConstraint.activate([
             
             menuView.trailingAnchor.constraint(equalTo: menuButton.leadingAnchor,constant: 40),
@@ -145,7 +174,7 @@ class ContactsViewController: UIViewController{
     }
     
     @IBAction func menuBtnAction(_ sender: UIButton) {
-      //  sender.isSelected = !sender.isSelected
+            //  sender.isSelected = !sender.isSelected
         if sender.isSelected{
             self.menuView.isHidden = true
         }else {
@@ -153,9 +182,17 @@ class ContactsViewController: UIViewController{
         }
         
     }
+    
+    @IBAction func sideMenuBtnAction(_ sender: Any) {
+        let sideVC = self.storyboard?.instantiateViewController(identifier: "SideMenuViewController") as! SideMenuViewController
+        sideVC.modalPresentationStyle = .overCurrentContext
+        //sideVC.modalTransitionStyle = .crossDissolve
+        self.present(sideVC, animated: true)
+    }
+    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         let location = sender.location(in: menuView)
-//        sender.numberOfTapsRequired = 1
+            //        sender.numberOfTapsRequired = 1
         if !menuView.bounds.contains(location) {
             self.menuView.isHidden = true
         }
@@ -163,12 +200,17 @@ class ContactsViewController: UIViewController{
             self.menuView.isHidden = false
         }
     }
+    
+    @objc func menuAction1(){
+        
+    }
     @objc func menuAction2(){
         
     }
     @objc func menuAction3(){
         
     }
+    
 }
 extension ContactsViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -208,7 +250,5 @@ extension ContactsViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         63.0
     }
-    
-    
-    
 }
+

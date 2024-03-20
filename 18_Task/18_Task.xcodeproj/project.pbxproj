@@ -11,6 +11,10 @@
 		1F88F0CD2BA99C9500C0D831 /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F88F0CC2BA99C9500C0D831 /* PlusViewController.swift */; };
 		1F88F0D02BA9A1B600C0D831 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F88F0CE2BA9A1B600C0D831 /* DetailTableViewCell.swift */; };
 		1F88F0D12BA9A1B600C0D831 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F88F0CF2BA9A1B600C0D831 /* DetailTableViewCell.xib */; };
+		1FBB1E162BAAA4C500177941 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB1E152BAAA4C500177941 /* SideMenuViewController.swift */; };
+		1FBB1E1A2BAABDBD00177941 /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB1E192BAABDBD00177941 /* SlideInPresentationAnimator.swift */; };
+		1FBB1E1C2BAAE89100177941 /* CreateLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB1E1B2BAAE89100177941 /* CreateLabelViewController.swift */; };
+		1FBB1E1E2BAB141B00177941 /* ManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB1E1D2BAB141B00177941 /* ManageViewController.swift */; };
 		1FDF617C2BA9B964006D9556 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF617B2BA9B964006D9556 /* PopUpViewController.swift */; };
 		1FED2EA32BA80C0900395C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED2EA22BA80C0900395C50 /* AppDelegate.swift */; };
 		1FED2EA52BA80C0900395C50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED2EA42BA80C0900395C50 /* SceneDelegate.swift */; };
@@ -30,6 +34,10 @@
 		1F88F0CC2BA99C9500C0D831 /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
 		1F88F0CE2BA9A1B600C0D831 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		1F88F0CF2BA9A1B600C0D831 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
+		1FBB1E152BAAA4C500177941 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		1FBB1E192BAABDBD00177941 /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
+		1FBB1E1B2BAAE89100177941 /* CreateLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLabelViewController.swift; sourceTree = "<group>"; };
+		1FBB1E1D2BAB141B00177941 /* ManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageViewController.swift; sourceTree = "<group>"; };
 		1FDF617B2BA9B964006D9556 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		1FED2E9F2BA80C0900395C50 /* 18_Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 18_Task.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FED2EA22BA80C0900395C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +98,9 @@
 				1FED2EA62BA80C0900395C50 /* ViewController.swift */,
 				1FDF617B2BA9B964006D9556 /* PopUpViewController.swift */,
 				1FED2EA82BA80C0900395C50 /* Main.storyboard */,
+				1FBB1E1D2BAB141B00177941 /* ManageViewController.swift */,
+				1FBB1E1B2BAAE89100177941 /* CreateLabelViewController.swift */,
+				1FBB1E152BAAA4C500177941 /* SideMenuViewController.swift */,
 				1F88F0CE2BA9A1B600C0D831 /* DetailTableViewCell.swift */,
 				1F88F0CF2BA9A1B600C0D831 /* DetailTableViewCell.xib */,
 				1F88F0CC2BA99C9500C0D831 /* PlusViewController.swift */,
@@ -101,6 +112,7 @@
 				1FED2EB02BA80C0B00395C50 /* Info.plist */,
 				1FED2EBC2BA8145A00395C50 /* ContactCollectionViewCell.swift */,
 				1FED2EBD2BA8145A00395C50 /* ContactCollectionViewCell.xib */,
+				1FBB1E192BAABDBD00177941 /* SlideInPresentationAnimator.swift */,
 			);
 			path = 18_Task;
 			sourceTree = "<group>";
@@ -180,12 +192,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FED2EA72BA80C0900395C50 /* ViewController.swift in Sources */,
+				1FBB1E1A2BAABDBD00177941 /* SlideInPresentationAnimator.swift in Sources */,
 				1FED2EBE2BA8145A00395C50 /* ContactCollectionViewCell.swift in Sources */,
 				1F88F0CB2BA95B5800C0D831 /* UIcolor.swift in Sources */,
 				1FED2EB72BA8118500395C50 /* ContactsViewController.swift in Sources */,
+				1FBB1E1E2BAB141B00177941 /* ManageViewController.swift in Sources */,
+				1FBB1E162BAAA4C500177941 /* SideMenuViewController.swift in Sources */,
 				1FED2EA32BA80C0900395C50 /* AppDelegate.swift in Sources */,
 				1FDF617C2BA9B964006D9556 /* PopUpViewController.swift in Sources */,
 				1FED2EA52BA80C0900395C50 /* SceneDelegate.swift in Sources */,
+				1FBB1E1C2BAAE89100177941 /* CreateLabelViewController.swift in Sources */,
 				1F88F0CD2BA99C9500C0D831 /* PlusViewController.swift in Sources */,
 				1FED2EC22BA81EE200395C50 /* ContactNmTableViewCell.swift in Sources */,
 				1F88F0D02BA9A1B600C0D831 /* DetailTableViewCell.swift in Sources */,
