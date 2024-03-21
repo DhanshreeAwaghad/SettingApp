@@ -18,5 +18,14 @@ class ManageViewController: UIViewController {
 
     }
     
-
+    
+    @IBAction func accountBtnTapped(_ sender: Any) {
+        let popUpVC = self.storyboard?.instantiateViewController(identifier: "PopUpViewController") as! PopUpViewController
+        popUpVC.modalPresentationStyle = .overCurrentContext
+        popUpVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(popUpVC, animated: true)
+        
+    }
+    
 }
