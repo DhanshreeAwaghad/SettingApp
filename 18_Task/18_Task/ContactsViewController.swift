@@ -30,9 +30,9 @@ class ContactsViewController: UIViewController, UIViewControllerTransitioningDel
     var isComingFromSideMenu : Bool?
     
     var names : [String] =
-    ["Akansha","Apeksha","Aarvi","Aaradhya","Aboli","Aachal","Bhavika","Balika","Bittu","Chameli","Chanda","Dhanashree","Dipti","Dipali","Divya"]
+    ["Akansha","Apeksha","Aarvi","Aaradhya","Aboli","Aachal","Bhavika","Balika","Bittu","Chameli","Chanda","Dhanashree","Dipti","Dipali","Divya","Emili","Freya","Falguni","Geeta","Gargi","Ganga","Harshali","Hruta","Isha","Ishita","Ishika"]
     
-    var img : [String] = ["a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2","a3"]
+    var img : [String] = ["a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2"]
     
     var image : [String] = ["phone","envelope","building.2"]
     
@@ -189,6 +189,15 @@ class ContactsViewController: UIViewController, UIViewControllerTransitioningDel
         //sideVC.modalTransitionStyle = .crossDissolve
         self.present(sideVC, animated: true)
     }
+    
+    @IBAction func floatingBtnAction(_ sender: Any) {
+        let plusVC = self.storyboard?.instantiateViewController(identifier: "PlusViewController") as! PlusViewController
+        plusVC.modalPresentationStyle = .overCurrentContext
+        plusVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(plusVC, animated: true)
+    }
+    
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         let location = sender.location(in: menuView)

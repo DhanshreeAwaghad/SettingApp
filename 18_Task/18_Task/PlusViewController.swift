@@ -24,9 +24,18 @@ class PlusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerCell()
         emailView.layer.cornerRadius = self.emailView.frame.height/2
         emailView.layer.borderWidth = 1
+        detailTableView.dataSource = self
+        detailTableView.delegate = self
       
+    }
+    func registerCell(){
+        let uinib = UINib(nibName: "DetailTableViewCell", bundle: nil)
+        self.detailTableView.register(uinib, forCellReuseIdentifier: "DetailTableViewCell")
+        
+        
     }
     func sectionOneHeader(){
         
@@ -40,11 +49,11 @@ class PlusViewController: UIViewController {
     }
 }
 extension PlusViewController : UITableViewDataSource{
-    func numberOfSections(in tableView: UITableView) -> Int {
-        5
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        5
+//    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,5 +64,8 @@ extension PlusViewController : UITableViewDataSource{
     
 }
 extension PlusViewController : UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        700.0
+    }
     
 }

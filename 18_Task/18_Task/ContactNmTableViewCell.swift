@@ -19,6 +19,8 @@ class ContactNmTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle = .none
         contactIImg.layer.cornerRadius = contactIImg.frame.height/2
+        contactIImg.layer.borderWidth = 1
+        contactIImg.layer.borderColor = UIColor.gray.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
