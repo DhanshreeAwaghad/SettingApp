@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserDetailTableViewCell" rowHeight="158" id="KGk-i7-Jjw" customClass="UserDetailTableViewCell" customModule="_8_Task" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ez-mb-bGh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXQ-9r-FTl">
+                                <rect key="frame" x="20" y="54.333333333333343" width="280" height="35"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="circle.slash" catalog="system" title="Block numbers" imagePadding="10"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bof-y8-vr4">
+                                <rect key="frame" x="20" y="99.333333333333329" width="280" height="34.999999999999986"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="pin" catalog="system" title="Unroute to voicemail" imagePadding="10"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKp-Zt-dL9">
+                                <rect key="frame" x="20" y="10" width="280" height="34.333333333333336"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="book.pages" catalog="system" title="Reminders" imagePadding="10"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bof-y8-vr4" firstAttribute="centerX" secondItem="4Ez-mb-bGh" secondAttribute="centerX" id="1vR-D9-xuD"/>
+                            <constraint firstItem="MKp-Zt-dL9" firstAttribute="centerX" secondItem="4Ez-mb-bGh" secondAttribute="centerX" id="55d-am-hqk"/>
+                            <constraint firstItem="MKp-Zt-dL9" firstAttribute="leading" secondItem="4Ez-mb-bGh" secondAttribute="leading" constant="20" id="TV3-80-LTz"/>
+                            <constraint firstItem="dXQ-9r-FTl" firstAttribute="leading" secondItem="4Ez-mb-bGh" secondAttribute="leading" constant="20" id="Tn0-q1-shw"/>
+                            <constraint firstItem="dXQ-9r-FTl" firstAttribute="top" secondItem="MKp-Zt-dL9" secondAttribute="bottom" constant="10" id="WJy-x0-2oc"/>
+                            <constraint firstItem="bof-y8-vr4" firstAttribute="leading" secondItem="4Ez-mb-bGh" secondAttribute="leading" constant="20" id="ZBe-B4-R7q"/>
+                            <constraint firstItem="dXQ-9r-FTl" firstAttribute="centerX" secondItem="4Ez-mb-bGh" secondAttribute="centerX" id="ZlS-UE-vdl"/>
+                            <constraint firstItem="MKp-Zt-dL9" firstAttribute="top" secondItem="4Ez-mb-bGh" secondAttribute="top" constant="10" id="aZv-qs-Udq"/>
+                            <constraint firstItem="bof-y8-vr4" firstAttribute="top" secondItem="dXQ-9r-FTl" secondAttribute="bottom" constant="10" id="npn-C3-enI"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="4Ez-mb-bGh" secondAttribute="trailing" id="5p2-DQ-7OB"/>
+                    <constraint firstItem="4Ez-mb-bGh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PLp-8x-FiC"/>
+                    <constraint firstItem="4Ez-mb-bGh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="g6Q-Vn-hb4"/>
+                    <constraint firstAttribute="bottom" secondItem="4Ez-mb-bGh" secondAttribute="bottom" id="twX-5e-3d4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="blockBtn" destination="dXQ-9r-FTl" id="98c-Qo-dcB"/>
+                <outlet property="reminderBtn" destination="MKp-Zt-dL9" id="qCW-6s-j1W"/>
+                <outlet property="voicemailBtn" destination="bof-y8-vr4" id="gpE-Se-QNT"/>
+            </connections>
+            <point key="canvasLocation" x="187.78625954198472" y="-21.126760563380284"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="book.pages" catalog="system" width="107" height="128"/>
+        <image name="circle.slash" catalog="system" width="123" height="128"/>
+        <image name="pin" catalog="system" width="116" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

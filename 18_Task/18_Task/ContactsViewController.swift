@@ -1,9 +1,9 @@
-//
-//  ContactsViewController.swift
-//  18_Task
-//
-//  Created by Digitalflake Mahesh K on 18/03/24.
-//
+    //
+    //  ContactsViewController.swift
+    //  18_Task
+    //
+    //  Created by Digitalflake Mahesh K on 18/03/24.
+    //
 
 import UIKit
 
@@ -12,7 +12,12 @@ class PopupView: UIView {
         // Customize your popup view here
 }
 
-class ContactsViewController: UIViewController, UIViewControllerTransitioningDelegate{
+class ContactsViewController: UIViewController, ConnectionManagerDelegate{
+    
+    var api : String?
+    var userList : UserListModel?
+    var manager = ConnectionManager()
+    
     
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var contactCollectionView: UICollectionView!
@@ -29,10 +34,10 @@ class ContactsViewController: UIViewController, UIViewControllerTransitioningDel
     
     var isComingFromSideMenu : Bool?
     
-    var names : [String] =
-    ["Akansha","Apeksha","Aarvi","Aaradhya","Aboli","Aachal","Bhavika","Balika","Bittu","Chameli","Chanda","Dhanashree","Dipti","Dipali","Divya","Emili","Freya","Falguni","Geeta","Gargi","Ganga","Harshali","Hruta","Isha","Ishita","Ishika"]
+        //    var names : [String] =
+        //    ["Akansha","Apeksha","Aarvi","Aaradhya","Aboli","Aachal","Bhavika","Balika","Bittu","Chameli","Chanda","Dhanashree","Dipti","Dipali","Divya","Emili","Freya","Falguni","Geeta","Gargi","Ganga","Harshali","Hruta","Isha","Ishita","Ishika"]
     
-    var img : [String] = ["a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2"]
+        //    var img : [String] = ["a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2","a3","a4","a5","a6","a1","a2"]
     
     var image : [String] = ["phone","envelope","building.2"]
     
@@ -41,6 +46,10 @@ class ContactsViewController: UIViewController, UIViewControllerTransitioningDel
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
+        
+        manager.delegate = self
+        manager.prepareForSession(endpoint: .user,queryParams: ["limit" : "10"])
+        self.navigationController?.navigationBar.isHidden = true
         plusFloatingBtn.layer.cornerRadius = 15
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGestureRecognizer.cancelsTouchesInView = false  // if u tap on view it wont cancel
@@ -79,6 +88,24 @@ class ContactsViewController: UIViewController, UIViewControllerTransitioningDel
         
     }
     
+    func didFinishTask(data: Data?, error: Error?) {
+        guard error == nil else { return }
+        print("Error  -----> \(error)")
+        
+        guard let data = data else { return }
+        do{
+            
+            userList = try JSONDecoder().decode(UserListModel.self, from: data)
+            print("data : -\(userList)")
+        }
+        catch{
+            print("Error : -\(error)")
+        }
+        DispatchQueue.main.async {
+            self.contactNmTableView.reloadData()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -92,14 +119,6 @@ class ContactsViewController: UIViewController, UIViewControllerTransitioningDel
         else {
             print("Nothing to show")
         }
-    }
-    
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideInPresentationAnimator(isPresentation: true)
-    }
-    
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideInPresentationAnimator(isPresentation: false)
     }
     
     func registerCell(){
@@ -186,7 +205,7 @@ class ContactsViewController: UIViewController, UIViewControllerTransitioningDel
     @IBAction func sideMenuBtnAction(_ sender: Any) {
         let sideVC = self.storyboard?.instantiateViewController(identifier: "SideMenuViewController") as! SideMenuViewController
         sideVC.modalPresentationStyle = .overCurrentContext
-        //sideVC.modalTransitionStyle = .crossDissolve
+            //sideVC.modalTransitionStyle = .crossDissolve
         self.present(sideVC, animated: true)
     }
     
@@ -229,7 +248,7 @@ extension ContactsViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.contactCollectionView.dequeueReusableCell(withReuseIdentifier: "ContactCollectionViewCell", for: indexPath) as! ContactCollectionViewCell
         cell.imgLabel.image = UIImage(systemName: image[indexPath.row])
-        //cell.imgLabel.image = UIImage(named: image[indexPath.row])
+            //cell.imgLabel.image = UIImage(named: image[indexPath.row])
         cell.dataLabel.text = data[indexPath.row]
         cell.layer.borderWidth = 1.0
         cell.layer.cornerRadius = 10
@@ -239,21 +258,40 @@ extension ContactsViewController : UICollectionViewDataSource{
     
 }
 extension ContactsViewController : UICollectionViewDelegateFlowLayout{
-
+    
 }
 extension ContactsViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return img.count
+        return userList?.data?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell1 = self.contactNmTableView.dequeueReusableCell(withIdentifier: "ContactNmTableViewCell", for: indexPath) as! ContactNmTableViewCell
-        cell1.contactNm.text = names[indexPath.row]
-        cell1.contactIImg.image = UIImage(named: img[indexPath.row])
+            //        cell1.contactNm.text = names[indexPath.row]
+            //        cell1.contactIImg.image = UIImage(named: img[indexPath.row])
+        if let user = userList?.data?[indexPath.row].firstName{
+            cell1.contactNm.text = user
+        }else{
+            cell1.contactNm.text = "Unknown"
+        }
+        let user2 = userList?.data?[indexPath.row].picture
+        if let imgUrl = user2{
+            ImageDownloader.downloadImage(imgUrl) { image, urlString, error in
+                DispatchQueue.main.async {
+                    cell1.contactIImg.image = image
+                }
+            }
+        }else {
+            cell1.contactIImg.image = UIImage(systemName: "Globe")
+        }
         return cell1
     }
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedRowId = userList?.data?[indexPath.row].id
+        let userDetailVC = storyboard?.instantiateViewController(identifier: "UserDetailViewController") as! UserDetailViewController
+        userDetailVC.receiveUserId = selectedRowId
+        navigationController?.pushViewController(userDetailVC, animated: true)
+    }
 }
 extension ContactsViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
