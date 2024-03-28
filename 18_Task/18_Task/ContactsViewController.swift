@@ -14,6 +14,8 @@ class PopupView: UIView {
 
 class ContactsViewController: UIViewController, ConnectionManagerDelegate{
     
+    var currentContactCount : Int = 20
+    
     var api : String?
     var userList : UserListModel?
     var manager = ConnectionManager()
@@ -46,9 +48,7 @@ class ContactsViewController: UIViewController, ConnectionManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
-        
-        manager.delegate = self
-        manager.prepareForSession(endpoint: .user,queryParams: ["limit" : "10"])
+        callAPI(forCount: currentContactCount)
         self.navigationController?.navigationBar.isHidden = true
         plusFloatingBtn.layer.cornerRadius = 15
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -86,6 +86,10 @@ class ContactsViewController: UIViewController, ConnectionManagerDelegate{
             // Initially hide the popup view
         popupView.isHidden = true
         
+    }
+    private func callAPI(forCount : Int){
+        manager.delegate = self
+        manager.prepareForSession(endpoint: .user,queryParams: ["limit" : "\(forCount)"])
     }
     
     func didFinishTask(data: Data?, error: Error?) {
@@ -292,10 +296,25 @@ extension ContactsViewController : UITableViewDataSource{
         userDetailVC.receiveUserId = selectedRowId
         navigationController?.pushViewController(userDetailVC, animated: true)
     }
+    
 }
 extension ContactsViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         63.0
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        print("index is \(index)")
+        if index == currentContactCount-1{
+            
+            currentContactCount = currentContactCount + 20
+            callAPI(forCount: currentContactCount)
+        }
+        else{
+            print("Cant add")
+        }
+    }
+    
 }
 

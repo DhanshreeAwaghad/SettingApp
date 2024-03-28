@@ -11,6 +11,9 @@ class UserDetailViewController: UIViewController,ConnectionManagerDelegate{
   
     @IBOutlet weak var userDetailTableView: UITableView!
     @IBOutlet weak var userNameLabel: UILabel!
+    
+    @IBOutlet weak var userLastNnameLbl: UILabel!
+    
     @IBOutlet weak var userImageView: UIImageView!
 
     @IBOutlet weak var textBtn: UIButton!
@@ -86,6 +89,7 @@ class UserDetailViewController: UIViewController,ConnectionManagerDelegate{
             }
             self.userNameLabel.text = self.userDetail?.firstName
             self.phoneLabel.text = self.userDetail?.phone
+            self.userLastNnameLbl.text = self.userDetail?.lastName
             self.userDetailTableView.reloadData()
         }
     }
